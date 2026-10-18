@@ -2,6 +2,15 @@
 
 All notable changes to `laravel-livewire-tables` will be documented in this file
 
+## [Unreleased: sotiriskast fork, branch `livewire-4`] - 2026-10-18
+
+### Changes
+
+- Livewire 4 support: the `livewire/livewire` constraint is widened to `^3.0|^4.0`. Ported from upstream PR [#2324](https://github.com/rappasoft/laravel-livewire-tables/pull/2324) by Florian (@ptifloflo); upstream closed it because Livewire 4 support will ship as a separate package. Use this branch only until that package is available.
+  - `make:datatable` no longer uses Livewire 3's internal `ComponentParser` and `MakeCommand`, which Livewire 4 removed.
+  - Filters and the search box bind with `wire:model.live.blur` instead of `wire:model.blur`. On Livewire 4, `.blur` alone also holds back the client-side value until blur; `.live.blur` keeps the Livewire 3 behaviour. On Livewire 3 the two are equivalent.
+- Tested: the full suite (1541 tests) passes on Livewire 3.8.10 and 4.4.7, with Laravel 13.37 and PHP 8.5 (with `APP_DEBUG=false`; with debug on, 4 asset tests fail on both versions because the asset tags then start with an HTML comment).
+
 ## [v3.9.0] - 2026-10-09
 
 ### Upgrade Notes
